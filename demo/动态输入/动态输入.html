@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    @-webkit-keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    @-moz-keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    .wrap {
+      width: 1000px;
+      text-align: center;
+      margin: 100px auto 0;
+    }
+
+    .wrap h1 {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 300;
+    }
+
+    .word {
+      font-weight: 700;
+    }
+
+    .typed-cursor {
+      opacity: 1;
+      -webkit-animation: blink .7s infinite;
+      -moz-animation: blink .7s infinite;
+      animation: blink .7s infinite;
+      display: none;
+    }
+
+    .saySection {
+      margin-top: 50px;
+    }
+
+    .saySection input {
+      font-size: 30px;
+    }
+
+    .saySection .txtSay {
+      padding-left: 10px;
+    }
+
+    .saySection .btnSay {
+      display: inline-block;
+      padding: 0 20px;
+      cursor: pointer;
+    }
+  </style>
+  <script src="./jquery-1.11.1.js"></script>
+  <script>
+    //点击提交时获取文字
+    //文字每次展示一个
+    $(function () {
+      let $word = $('.word'),
+        $cursor = $('.type-curser'),
+        time = null;
+
+
+      function showWords(str) {
+        clearInterval(time)
+        $cursor.show()
+        var num = 0;
+        let arr = (str || '红鲤鱼与绿鲤鱼于驴').split('');
+        console.log(arr)
+        $word.text('')
+        time = setInterval(function () {
+          if (num < arr.length) {
+            $word.text($word.text() + arr[num]);
+            num++;
+          } else {
+            clearInterval(time);
+            $cursor.hide()
+          }
+        }, 200)
+      }
+      showWords();
+      $('.btnSay').click(function () {
+        let str = $('#inValue').val();
+        console.log(str)
+        showWords(str);
+        $('#inValue').val('')
+      })
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // $(function(){
+
+    //   var $word = $('.word'),
+    //       $sursor = $('.typed-cursor'),
+    //       timer = null;
+    //   inputEveryOne();
+    //   // 给  say  按钮添加点击事件
+    //   $('#btnSay').click(function(){
+    //     // 获取输入框内容
+    //     var str = $('#inValue').val();
+    //     inputEveryOne(str);
+    //     // 清空输入框内容
+    //     $('#inValue').val('');
+    //   })
+
+    //   function inputEveryOne(str){
+    //     clearInterval(timer);
+    //     // 1、让闪烁的竖线 显示
+    //     $sursor.show()
+    //     // 2、把要显示的字符串切割成数组
+    //     var arr = (str||'红鲤鱼与绿鲤鱼与驴').split('')
+    //     // 3、定义一个计数器   记录每一次拼接第几个字符
+    //     var strNum = 0;
+    //     // 4、定义一个定时器，没次给  文字盒子重新设置里面文本内容
+    //     $word.text('')
+    //     timer = setInterval(function(){
+    //       // 当所有文字都拼接上了之后
+    //       if(strNum >= arr.length-1){
+    //         // 清楚定时器
+    //         clearInterval(timer);
+    //         // 隐藏竖线
+    //         $sursor.hide();
+    //       }
+    //       // 给 $word 里面文字  重新赋值
+    //       $word.text( $word.text()+arr[strNum] );
+    //       strNum++;
+    //     },200)
+    //   }
+    // })
+  </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <h1>
+      You want to say ： <span class="word"></span> ！
+    </h1>
+    <div class="saySection">
+      <input type="text" id="inValue" class="txtSay" />
+      <input type="button" value="Say" id="btnSay" class="btnSay" />
+    </div>
+  </div>
+</body>
+
+</html>
