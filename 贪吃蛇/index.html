@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/index.css">
+
+</head>
+
+<body>
+  <button id="btn1">开始</button>
+  <button id="btn2">暂停</button>
+  <input type="text" id="score" value="分数：0" readonly>
+  <!-- 地图 -->
+  <div class="map">
+
+  </div>
+  <!--死亡提示 -->
+  <div class="dead">
+    <h1>Game Over</h1>
+    <span id="btn3">重新开始</span>
+  </div>
+</body>
+<script src="./lib/jquery-1.12.4.js"></script>
+<script src="./js/Food.js"></script>
+<script src="./js/Snake.js"></script>
+<script src="./js/Game.js"></script>
+<script>
+  var game = new Game()
+  $('#btn1').click(function () {
+    game.start()
+  })
+
+  $('#btn2').click(function () {
+    game.stop()
+  })
+</script>
+
+</html>
