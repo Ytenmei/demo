@@ -48,3 +48,34 @@ Snake.prototype.move = function () {
   $('.snake-head,.snake-body').remove()
   this.drawSnake()
 }
+
+// 定义方法→ 撞墙死
+Snake.prototype.dead = function () {
+  // 1. 获取蛇头数据
+  var head = this.body[0]
+  if (
+    head.x < 0 ||
+    head.y < 0 ||
+    head.x >= $('.map').width() / 20 ||
+    head.y >= $('.map').height() / 20
+  ) {
+    return true
+  } else {
+    return false
+  }
+}
+
+
+/*
+  蛇吃食物
+ 思路： 通过eat 方法接收传过来的食物的x,y的方法。
+ 取出蛇头，用来判断蛇头是否等于食物的位置 
+*/
+Snake.prototype.eat = function(x, y) {
+  var head = this.body[0]
+  if (head.x * 20 == x && head.y * 20 == y) {
+    return true
+  } else {
+    return false
+  }
+}
