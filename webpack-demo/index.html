@@ -11,4 +11,10 @@
     <!-- html-webpack-plugin 会自动将打包的结果 JS 插入 这里 -->
     <!-- <script src="./dist/main.js"></script> -->
 </body>
+<script>
+  window.addEventListener("popstate",function(e){
+    const isTrue = window.confirm('还有信息未保存。')
+    if (!isTrue) return 
+  },false)
+</script>
 </html>
